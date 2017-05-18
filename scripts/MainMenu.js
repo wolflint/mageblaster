@@ -9,7 +9,7 @@ BasicGame.MainMenu.prototype = {
 	create: function () {
 		//We've already loaded the assets so we'll move straight into the MainMenu
 		//Here all we are doing is playing, music, adding a pic and button
-		//I will modify the MainMeny to suit your game
+		//I will modify the MainMenu to suit your game
 
 		//Output sky, ship, scire, lives, total and Start Time to the screen
 		//The scrolling starfield background
