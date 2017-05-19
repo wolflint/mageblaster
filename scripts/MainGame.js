@@ -12,6 +12,11 @@ var nextFire = 0;
 //Misc. Variables
 var cursors; //Keyboard control
 
+//Timer variable
+var seconds; //Time in seconds that the game has been running
+var timer;
+var timerText;
+
 BasicGame.Game.prototype = {
 
   create: function() {
@@ -58,11 +63,41 @@ BasicGame.Game.prototype = {
     bullets.setAll('outOfBoundsKill', true);
     bullets.setAll('checkWorldBounds', true);
 
+		//Score, Timer and Life HUD setup
+		scoreText = this.add.text(16, 16, 'Score: 0', {
+			font: '32px Arial',
+			fill: '#fff'
+		});
+		//Sets value of score to 0 and outputs to the screen
+		score = 0;
+		scoreText.text = "Score: " + score;
+
+		lifeTotalText = this.add.text(this.world.width - 150, 16, 'Lives: 3', {
+			font: '32px Arial',
+			fill: '#fff'
+		});
+		//Sets value of lifeTotal to 3 and outputs to screen
+		lifeTotal = 3;
+		lifeTotalText = "Lives: " + lifeTotal;
+
+		//Setup the timer
+		timerText = this.add.text(350, 16, 'Time: 0', {
+			font: '32px Arial',
+			fill: '#fff'
+		});
+		timer = this.time.create(false);
+		seconds = 0;
+		timerText.text = "Time: " + seconds;
+
     //CONTROLS
     //Allow Left arrow, Right arrow and Space
     this.input.keyboard.addKeyCapture([Phaser.Keyboard.LEFT, Phaser.Keyboard.RIGHT, Phaser.Keyboard.SPACEBAR]);
     cursors = this.input.keyboard.createCursorKeys();
-  },
+
+		//Set TimerEvent to occur every second
+		timer.loop(1000, this.updateTimer, this);
+		timer.start();
+	  },
 
   update: function() {
     //execute 'createUfo','createLife','moveShip','collisionDetection' function
@@ -159,6 +194,8 @@ BasicGame.Game.prototype = {
     //Executed if there is a collision between the ship and ufos
     //Ufo is destroyes, player looses 1 life and animations are played
     ufo.kill();
+		lifeTotal --;
+		lifeTotalText.text = "Lives: " + lifeTotal;
   },
 
   destroyUfo: function(bullet, ufo) {
@@ -166,12 +203,22 @@ BasicGame.Game.prototype = {
 		//UFO is destroyed, plays sound and animation, increases score
 		ufo.kill();
 		bullet.kill();
+		score += 100;
+		scoreText.text = "Score: " + score;
 	},
 
 	collectLife: function(ship, life) {
 		//Executed when there is a collision between the player and life
 		//Life is destroyed, animation and sound played, increased lifeTotal
 		life.kill();
+		lifeTotal ++;
+		lifeTotalText.text = "Lives: " + lifeTotal;
+	},
+
+	updateTimer: function(){
+		//Updates timer and outputs to the screen
+		seconds ++;
+		timerText.text = "Time: " + seconds;
 	},
 
 
