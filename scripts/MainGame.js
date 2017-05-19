@@ -151,8 +151,8 @@ BasicGame.Game.prototype = {
   collisionDetection: function() {
     //Function executed during gameplay, checks for collisions
     this.physics.arcade.overlap(ship, ufos, this.collideUfo, null, this);
-    this.physics.arcade.ovelap(ship, lives, this.collectLife, null, this);
-    this.physics.arcade.ovelap(bullets, ufos, this.destroyUfo, null, this);
+    this.physics.arcade.overlap(ship, lives, this.collectLife, null, this);
+    this.physics.arcade.overlap(bullets, ufos, this.destroyUfo, null, this);
   },
 
   collideUfo: function(ship, ufo) {
