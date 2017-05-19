@@ -106,7 +106,6 @@ BasicGame.Game.prototype = {
       if (this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
         this.fireBullet();
       }
-    }
   },
 
   createUfo: function() {
