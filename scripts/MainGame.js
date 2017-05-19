@@ -17,6 +17,10 @@ var seconds; //Time in seconds that the game has been running
 var timer;
 var timerText;
 
+//HUD
+var lifeTotal;
+
+
 BasicGame.Game.prototype = {
 
   create: function() {
