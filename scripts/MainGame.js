@@ -69,6 +69,7 @@ BasicGame.Game.prototype = {
     this.createUfo();
     this.createLife();
     this.moveShip();
+    this.collisionDetection();
   },
 
   moveShip: function() {
@@ -76,10 +77,10 @@ BasicGame.Game.prototype = {
 
     //When Left Arrow pressed, moves ship Left
     if (cursors.left.isDown) {
-      ship.body.velocity.x =//When Right Arrow pressed, moves ship Right
+      ship.body.velocity.x = //When Right Arrow pressed, moves ship Right
       -200;
     } else if (cursors.right.isDown) {
-      ship.body.velocity.x =//No button pressed, stops horizontal movement
+      ship.body.velocity.x = //No button pressed, stops horizontal movement
       200;
     } else {
       ship.body.velocity.x = 0;
@@ -87,10 +88,10 @@ BasicGame.Game.prototype = {
 
     //When Left Arrow pressed, moves ship Left
     if (cursors.left.isDown) {
-      ship.body.velocity.x =//When Right Arrow pressed, moves ship Right
+      ship.body.velocity.x = //When Right Arrow pressed, moves ship Right
       -200;
     } else if (cursors.right.isDown) {
-      ship.body.velocity.x =//No button pressed, stops horizontal movement
+      ship.body.velocity.x = //No button pressed, stops horizontal movement
       200;
     } else {
       ship.body.velocity.x = 0;
@@ -145,5 +146,20 @@ BasicGame.Game.prototype = {
       bullet.reset(ship.x, ship.y);
       bullet.body.velocity.y = -400;
     }
-  }
+  },
+
+  collisionDetection: function() {
+    //Function executed during gameplay, checks for collisions
+    this.physics.arcade.overlap(ship, ufos, this.collideUfo, null, this);
+    this.physics.arcade.ovelap(ship, lives, this.collectLife, null, this);
+    this.physics.arcade.ovelap(bullets, ufos, this.destroyUfo, null, this);
+  },
+
+  collideUfo: function(ship, ufo) {
+    //Executed if there is a collision between the ship and ufos
+    //Ufo is destroyes, player looses 1 life and animations are played
+    ufo.kill();
+  },
+
+  destroyUfo: function(bullet, ufo) {}
 };
