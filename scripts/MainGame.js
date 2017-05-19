@@ -34,8 +34,8 @@ BasicGame.Game.prototype = {
 
 			 ufos.setAll('outOfBoundsKill', true);
 			 ufos.setAll('checkWorldBounds', true);
-			 ufos.setAll('anchor.x', 0.5);
-			 ufos.setAll('anchor.y', 0.5);
+			 ufos.setAll('anchor.x' 0.5);
+			 ufos.setAll('anchor.y' 0.5);
 
 			 //LIVES
 			 //Create the group of lives, set their physics and boundaries
@@ -73,6 +73,7 @@ BasicGame.Game.prototype = {
 
 	moveShip: function () {
 		//Moves ship and fires the bullets using keyboard controls
+<<<<<<< HEAD
 
 		//When Left Arrow pressed, moves ship Left
 		if (cursors.left.isDown) {
@@ -87,11 +88,30 @@ BasicGame.Game.prototype = {
 			ship.body.velocity.x = 0;
 		}
 
+=======
+
+		//When Left Arrow pressed, moves ship Left
+		if (cursors.left.isDown) {
+			ship.body.velocity.x = -200;
+		}
+		//When Right Arrow pressed, moves ship Right
+		else if (cursors.right.isDown) {
+			ship.body.velocity.x = 200;
+		}
+		//No button pressed, stops horizontal movement
+		else {
+			ship.body.velocity.x = 0;
+		}
+
+>>>>>>> master
 		//SHOOTING
 		//If SpaceBar is pressed, execute the 'fireBullet' function
 		if (this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
 			this.fireBullet();
 		}
+<<<<<<< HEAD
+	}
+=======
 	},
 
 	createUfo: function () {
@@ -118,12 +138,15 @@ BasicGame.Game.prototype = {
 		//Generate random number between 0 and 500
 		var random = this.rnd.integerInRange(0, 500);
 		//If random = 0 spawn a life at a random X position
+		if (random === 0) {
 		var randomX = this.rnd.integerInRange(0, this.world.width - 150);
+
 
 		//Create life from lives group and set the velocity
 		var life = lives.create(randomX, -50, 'life');
 		this.physics.enable(life, Phaser.Physics.ARCADE);
 		life.body.velocity.y = 150;
+	}
 	},
 
 	fireBullet: function () {
@@ -134,6 +157,33 @@ BasicGame.Game.prototype = {
 			bullet.reset(ship.x, ship.y);
 			bullet.body.velocity.y = -400;
 		}
+	},
+>>>>>>> master
+
+	createUfo: function () {
+		//When executed, creates new UFO enemies
+
+		//Randomly generates a number between 0 and 20
+		var random = this.rnd.integerInRange(0, 20);
+		//If random = 0 , then create UFO in a random x position and a random y velocity
+		if (random === 0) {
+			//Generate random X position
+			var randomX = this.rnd.integerInRange(0, this.world.width - 150);
+
+			//Create UFO from the UFOs group and set the physics
+			var ufo = ufos.create(randomX, -50, 'ufo');
+			this.physics.enable(ufo, Phaser.Physics.ARCADE);
+			//Generate random velocity
+			ufo.body.velocity.y = this.rnd.integerInRange(100, 600);
+		}
+	},
+
+	createLife: function () {
+
+	},
+
+	fireBullet: function () {
+
 	},
 
 };
