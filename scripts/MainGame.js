@@ -193,9 +193,9 @@ BasicGame.Game.prototype = {
   collideUfo: function(ship, ufo) {
     //Executed if there is a collision between the ship and ufos
     //Ufo is destroyes, player looses 1 life and animations are played
-    ufo.kill();
 		lifeTotal --;
 		lifeTotalText.text = "Lives: " + lifeTotal;
+		ufo.kill();
   },
 
   destroyUfo: function(bullet, ufo) {
