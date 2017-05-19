@@ -34,8 +34,8 @@ BasicGame.Game.prototype = {
 
 			 ufos.setAll('outOfBoundsKill', true);
 			 ufos.setAll('checkWorldBounds', true);
-			 ufos.setAll('anchor.x' 0.5);
-			 ufos.setAll('anchor.y' 0.5);
+			 ufos.setAll('anchor.x', 0.5);
+			 ufos.setAll('anchor.y', 0.5);
 
 			 //LIVES
 			 //Create the group of lives, set their physics and boundaries
