@@ -161,5 +161,18 @@ BasicGame.Game.prototype = {
     ufo.kill();
   },
 
-  destroyUfo: function(bullet, ufo) {}
+  destroyUfo: function(bullet, ufo) {
+		//Executed if there is a colllision between a UFO and a bullet
+		//UFO is destroyed, plays sound and animation, increases score
+		ufo.kill();
+		bullet.kill();
+	},
+
+	collectLife: function(ship, life) {
+		//Executed when there is a collision between the player and life
+		//Life is destroyed, animation and sound played, increased lifeTotal
+		life.kill();
+	},
+
+
 };
