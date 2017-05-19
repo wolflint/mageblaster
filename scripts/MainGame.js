@@ -123,6 +123,7 @@ BasicGame.Game.prototype = {
       this.physics.enable(ufo, Phaser.Physics.ARCADE);
       //Generate random velocity
       ufo.body.velocity.y = this.rnd.integerInRange(100, 600);
+    }
     },
 
   createLife: function() {
