@@ -20,6 +20,11 @@ var seconds; //Time in seconds that the game has been running
 var timer;
 var timerText;
 
+//Audio Variables
+var music;
+var bulletAudio;
+var explosionAudio;
+
 //HUD
 var health;
 var score;
@@ -89,11 +94,6 @@ BasicGame.Game.prototype = {
 		//Sets value of health to 3 and outputs to screen
 		health = 3;
 		healthText.text = "Lives: " + health;
-
-    //Audio Variables
-    var music;
-    var bulletAudio;
-    var explosionAudio;
 
 		//Setup the timer
 		timerText = this.add.text(350, 16, 'Time: 0', {
