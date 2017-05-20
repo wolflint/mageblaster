@@ -47,10 +47,6 @@ BasicGame.Game.prototype = {
     this.physics.enable(ship, Phaser.Physics.ARCADE);
     ship.body.collideWorldBounds = true;
 
-    //Debug toggle
-    debugToggle = game.input.keyboard.addKey(Phaser.Keyboard.F3);
-    game.debugToggle.onDown.add(toggle, this);
-
     //Creating Groups
 
     //UFOs
@@ -131,6 +127,10 @@ BasicGame.Game.prototype = {
     //Allow Left arrow, Right arrow and Space
     this.input.keyboard.addKeyCapture([Phaser.Keyboard.LEFT, Phaser.Keyboard.RIGHT, Phaser.Keyboard.SPACEBAR]);
     cursors = this.input.keyboard.createCursorKeys();
+
+    //Debug toggle
+    debugToggle = this.input.keyboard.addKey(Phaser.Keyboard.F3);
+    game.debugToggle.onDown.add(toggle, this);
 
     //Load audio into memory, start music
     bulletAudio = this.add.audio('bullet');
