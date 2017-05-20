@@ -232,7 +232,7 @@ BasicGame.Game.prototype = {
     ufo.kill();
     var animation = this.add.sprite(ufo.body.x, ufo.body.y, 'kaboom');
     animation.animations.add('explode');
-    animation.animations.add('explode', 30, false, true);
+    animation.animations.play('explode', 30, false, true);
 		health--;
 		healthText.text = "Lives: " + health;
   },
@@ -244,7 +244,7 @@ BasicGame.Game.prototype = {
 		bullet.kill();
     var animation = this.add.sprite(ufo.body.x, ufo.body.y, 'kaboom');
     animation.animations.add('explode');
-    animation.animations.add('explode', 30, false, true);
+    animation.animations.play('explode', 30, false, true);
 		score += 100;
 		scoreText.text = "Score: " + score;
 	},
@@ -257,7 +257,7 @@ BasicGame.Game.prototype = {
 		healthText.text = "Lives: " + health;
     var animation = this.add.sprite(life.body.x, life.body.y, 'lifeAnimation');
     animation.animations.add('lifeAnimation');
-    animation.animations.add('lifeAnimation', 30, false, true);
+    animation.animations.play('lifeAnimation', 30, false, true);
 	},
 
 	updateTimer: function(){
