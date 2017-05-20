@@ -30,6 +30,8 @@ var health;
 var score;
 var scoreText;
 var healthText;
+var showDebug = false;
+var debugToggle;
 
 
 BasicGame.Game.prototype = {
@@ -44,6 +46,10 @@ BasicGame.Game.prototype = {
     ship.anchor.setTo(0.5, 0);
     this.physics.enable(ship, Phaser.Physics.ARCADE);
     ship.body.collideWorldBounds = true;
+
+    //Debug toggle
+    debugToggle = game.input.keyboard.addKey(Phaser.Keyboard.F3);
+    game.debugToggle.onDown.add(toggle, this);
 
     //Creating Groups
 
@@ -298,10 +304,19 @@ restartGame: function () {
   this.game.state.start('Game');
 },
 
+toggle: function() {
+  showDebug = (showDebug) ? false : true;
+  if (!showDebug) {
+    game.debug.reset();
+  }
+},
+
 render: function () {
   //Sprite debug info
+  if (showDebug) {
   this.game.debug.bodyInfo(ship,32, 100);
   this.game.debug.spriteBounds(ship);
+}
 },
 
 };
