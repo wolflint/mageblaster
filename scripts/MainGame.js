@@ -11,6 +11,9 @@ var nextFire = 0;
 
 //Misc. Variables
 var cursors; //Keyboard control
+var gameOverText;
+var restartButton;
+var gameOver;
 
 //Timer variable
 var seconds; //Time in seconds that the game has been running
@@ -96,6 +99,23 @@ BasicGame.Game.prototype = {
 		seconds = 0;
 		timerText.text = "Time: " + seconds;
 
+    //GAME OVER
+    gameOverText = this.add.text(this.world.centerX, this.world.centerY - 50, "GAME OVER", {
+      font: '96px Arial',
+      fill: '#ff0',
+      align: 'center'
+    });
+    gameOverText.anchor.set(0.5);
+    //Hides GAME OVER text
+    gameOverText.visible = false;
+    gameOver = false;
+
+    //RESTART
+    //Creates a restart button and hides it
+    restartButton = this.add.button((this.world.width / 2), (this.world.height / 2) + 50, 'startButton', this.restartGame);
+    restartButton.anchor.set(0.5);
+    restartButton.visible = false;
+
     //CONTROLS
     //Allow Left arrow, Right arrow and Space
     this.input.keyboard.addKeyCapture([Phaser.Keyboard.LEFT, Phaser.Keyboard.RIGHT, Phaser.Keyboard.SPACEBAR]);
@@ -107,11 +127,17 @@ BasicGame.Game.prototype = {
 	  },
 
   update: function() {
-    //execute 'createUfo','createLife','moveShip','collisionDetection' function
+    //execute trueGameOver function when one of the requirements is met
+    if (health < 1 || seconds == 60 || gameOver === true) {
+      this.trueGameOver();
+    }
+    //else execute 'createUfo','createLife','moveShip','collisionDetection' function
+    else {
     this.createUfo();
     this.createLife();
     this.moveShip();
     this.collisionDetection();
+  }
   },
 
   moveShip: function() {
@@ -227,6 +253,24 @@ BasicGame.Game.prototype = {
 		seconds++;
 		timerText.text = "Time: " + seconds;
 	},
+
+  trueGameOver: function () {
+    //Executed when game ends, kills all objects, stops timer and displays game over screen
+    ship.body.velocity.x = 0;
+    ship.body.x = (this.world.width / 2) - (ship.body.width / 2);
+    ufos.callAll('kill');
+    lives.callAll('kill');
+    bullets.callAll('kill');
+    gameOverText.visible = true;
+    restartButton.visible = true;
+    timer.stop();
+  },
+
+restartGame: function () {
+  //executed when restart button is pressed
+  this.game.state.start('Game');
+},
+
 
 
 };
