@@ -127,8 +127,8 @@ BasicGame.Game.prototype = {
     cursors = this.input.keyboard.createCursorKeys();
 
     //Load audio into memory, start music
-    bulletAudio = this.add.audio('bullet');
-    explosionAudio = this.add.audio('explosion');
+    bulletAudio = this.add.audio('bullet', 1, true);
+    explosionAudio = this.add.audio('explosion', 1, true);
     music = this.add.audio('music', 1, true);
     music.play('', 0, 1, true);
 
