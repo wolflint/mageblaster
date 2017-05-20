@@ -90,6 +90,11 @@ BasicGame.Game.prototype = {
 		health = 3;
 		healthText.text = "Lives: " + health;
 
+    //Audio Variables
+    var music;
+    var bulletAudio;
+    var explosionAudio;
+
 		//Setup the timer
 		timerText = this.add.text(350, 16, 'Time: 0', {
 			font: '32px Arial',
@@ -120,6 +125,12 @@ BasicGame.Game.prototype = {
     //Allow Left arrow, Right arrow and Space
     this.input.keyboard.addKeyCapture([Phaser.Keyboard.LEFT, Phaser.Keyboard.RIGHT, Phaser.Keyboard.SPACEBAR]);
     cursors = this.input.keyboard.createCursorKeys();
+
+    //Load audio into memory, start music
+    bulletAudio = this.add.audio('bullet');
+    explosionAudio = this.add.audio('explosion');
+    music = this.add.audio('music', 1, true);
+    music.play('', 0, 1, true);
 
 		//Set TimerEvent to occur every second
 		timer.loop(1000, this.updateTimer, this);
@@ -216,6 +227,7 @@ BasicGame.Game.prototype = {
       var bullet = bullets.getFirstExists(false);
       bullet.reset(ship.x, ship.y);
       bullet.body.velocity.y = -400;
+      bulletAudio.play();
     }
   },
 
@@ -229,6 +241,7 @@ BasicGame.Game.prototype = {
   collideUfo: function(ship, ufo) {
     //Executed if there is a collision between the ship and ufos
     //Ufo is destroyes, player looses 1 life and animations are played
+    explosionAudio.play();
     ufo.kill();
     var animation = this.add.sprite(ufo.body.x, ufo.body.y, 'kaboom');
     animation.animations.add('explode');
@@ -240,7 +253,8 @@ BasicGame.Game.prototype = {
   destroyUfo: function(bullet, ufo) {
 		//Executed if there is a colllision between a UFO and a bullet
 		//UFO is destroyed, plays sound and animation, increases score
-		ufo.kill();
+    explosionAudio.play();
+    ufo.kill();
 		bullet.kill();
     var animation = this.add.sprite(ufo.body.x, ufo.body.y, 'kaboom');
     animation.animations.add('explode');
@@ -273,6 +287,7 @@ BasicGame.Game.prototype = {
     ufos.callAll('kill');
     lives.callAll('kill');
     bullets.callAll('kill');
+    music.stop();
     gameOverText.visible = true;
     restartButton.visible = true;
     timer.stop();

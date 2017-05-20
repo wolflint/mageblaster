@@ -28,6 +28,10 @@ BasicGame.Preloader.prototype = {
 		this.load.spritesheet('kaboom', 'assets/explode.png', 128, 128, 16);
 		this.load.spritesheet('lifeAnimation', 'assets/lifeAnimation.png', 100, 100, 4);
 
+		this.load.audio('music', ['assets/music.m4a', 'assets/music.mp3']);
+		this.load.audio('bullet', ['assets/laser_human.mp3']);
+		this.load.audio('explosion', ['assets/explosion.mp3']);
+
 	},
 
 	create: function () {
@@ -35,7 +39,11 @@ BasicGame.Preloader.prototype = {
 	},
 
 	update: function () {
-		this.game.state.start('MainMenu');
+		//Wait for audio to decode before MainMenu
+		if (this.cache.isSoundDecoded('music') && this.ready == false) {
+			this.ready = true;
+			this.game.state.start('MainMenu');
+		}
 	}
 
 };
