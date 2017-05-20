@@ -18,10 +18,10 @@ var timer;
 var timerText;
 
 //HUD
-var lifeTotal;
+var health;
 var score;
 var scoreText;
-var lifeTotalText;
+var healthText;
 
 
 BasicGame.Game.prototype = {
@@ -71,7 +71,7 @@ BasicGame.Game.prototype = {
     bullets.setAll('checkWorldBounds', true);
 
 		//Score, Timer and Life HUD setup
-		scoreText = this.add.text(16, 16, 'Score: 0', {
+		scoreText = this.add.text(16, 16, "Score: 0", {
 			font: '32px Arial',
 			fill: '#fff'
 		});
@@ -79,13 +79,13 @@ BasicGame.Game.prototype = {
 		score = 0;
 		scoreText.text = "Score: " + score;
 
-		lifeTotalText = this.add.text(this.world.width - 150, 16, 'Lives: 3', {
+		healthText = this.add.text(this.world.width - 150, 16, "Lives: 3", {
 			font: '32px Arial',
 			fill: '#fff'
 		});
-		//Sets value of lifeTotal to 3 and outputs to screen
-		lifeTotal = 3;
-		lifeTotalText = "Lives: " + lifeTotal;
+		//Sets value of health to 3 and outputs to screen
+		health = 3;
+		healthText.text = "Lives: " + health;
 
 		//Setup the timer
 		timerText = this.add.text(350, 16, 'Time: 0', {
@@ -200,9 +200,11 @@ BasicGame.Game.prototype = {
   collideUfo: function(ship, ufo) {
     //Executed if there is a collision between the ship and ufos
     //Ufo is destroyes, player looses 1 life and animations are played
-		lifeTotal --;
-		lifeTotalText.text = "Lives: " + lifeTotal;
+		health--;
+		healthText.text = "Lives: " + health;
 		ufo.kill();
+    console.log(healthText);
+    console.log("health = " +health);
   },
 
   destroyUfo: function(bullet, ufo) {
@@ -212,19 +214,21 @@ BasicGame.Game.prototype = {
 		bullet.kill();
 		score += 100;
 		scoreText.text = "Score: " + score;
+    console.log("destroyUfo");
 	},
 
 	collectLife: function(ship, life) {
 		//Executed when there is a collision between the player and life
-		//Life is destroyed, animation and sound played, increased lifeTotal
+		//Life is destroyed, animation and sound played, increased health
 		life.kill();
-		lifeTotal ++;
-		lifeTotalText.text = "Lives: " + lifeTotal;
+		health++;
+		healthText.text = "Lives: " + health;
+    console.log("collectLife");
 	},
 
 	updateTimer: function(){
 		//Updates timer and outputs to the screen
-		seconds ++;
+		seconds++;
 		timerText.text = "Time: " + seconds;
 	},
 
