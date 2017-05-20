@@ -40,7 +40,7 @@ BasicGame.Preloader.prototype = {
 
 	update: function () {
 		//Wait for audio to decode before MainMenu
-		if (this.cache.isSoundDecoded('music') && this.ready == false) {
+		if (this.cache.isSoundDecoded('music') && this.ready === false) {
 			this.ready = true;
 			this.game.state.start('MainMenu');
 		}
