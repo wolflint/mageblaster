@@ -130,7 +130,7 @@ BasicGame.Game.prototype = {
 
     //Debug toggle
     debugToggle = this.input.keyboard.addKey(Phaser.Keyboard.F3);
-    game.debugToggle.onDown.add(toggle, this);
+    this.debugToggle.onDown.add(toggle, this);
 
     //Load audio into memory, start music
     bulletAudio = this.add.audio('bullet');
