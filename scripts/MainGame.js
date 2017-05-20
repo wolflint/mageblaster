@@ -106,7 +106,7 @@ BasicGame.Game.prototype = {
 
     //GAME OVER
     gameOverText = this.add.text(this.world.centerX, this.world.centerY - 50, "GAME OVER", {
-      font: '96px Arial',
+      font: '96px Impact',
       fill: '#ff0',
       align: 'center'
     });
