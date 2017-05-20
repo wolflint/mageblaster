@@ -127,6 +127,9 @@ BasicGame.Game.prototype = {
 	  },
 
   update: function() {
+    //Scroll background
+    this.starfield.tilePosition.y += 2;
+
     //execute trueGameOver function when one of the requirements is met
     if (health < 1 || seconds == 60 || gameOver === true) {
       this.trueGameOver();
@@ -226,9 +229,12 @@ BasicGame.Game.prototype = {
   collideUfo: function(ship, ufo) {
     //Executed if there is a collision between the ship and ufos
     //Ufo is destroyes, player looses 1 life and animations are played
+    ufo.kill();
+    var animation = this.add.sprite(ufo.body.x, ufo.body.y, 'kaboom');
+    animation.animations.add('explode');
+    animation.animations.add('explode', 30, false, true);
 		health--;
 		healthText.text = "Lives: " + health;
-		ufo.kill();
   },
 
   destroyUfo: function(bullet, ufo) {
@@ -236,6 +242,9 @@ BasicGame.Game.prototype = {
 		//UFO is destroyed, plays sound and animation, increases score
 		ufo.kill();
 		bullet.kill();
+    var animation = this.add.sprite(ufo.body.x, ufo.body.y, 'kaboom');
+    animation.animations.add('explode');
+    animation.animations.add('explode', 30, false, true);
 		score += 100;
 		scoreText.text = "Score: " + score;
 	},
@@ -246,6 +255,9 @@ BasicGame.Game.prototype = {
 		life.kill();
 		health++;
 		healthText.text = "Lives: " + health;
+    var animation = this.add.sprite(life.body.x, life.body.y, 'lifeAnimation');
+    animation.animations.add('lifeAnimation');
+    animation.animations.add('lifeAnimation', 30, false, true);
 	},
 
 	updateTimer: function(){

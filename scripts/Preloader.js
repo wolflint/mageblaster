@@ -25,6 +25,9 @@ BasicGame.Preloader.prototype = {
 		this.load.image('life', 'assets/lives.png');
 		this.load.image('bullet', 'assets/bullet.png');
 
+		this.load.spritesheet('kaboom', 'assets/explode.png', 128, 128, 16);
+		this.load.spritesheet('lifeAnimation', 'assets/lifeAnimation.png', 100, 100, 4);
+
 	},
 
 	create: function () {
