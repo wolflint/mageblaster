@@ -203,8 +203,6 @@ BasicGame.Game.prototype = {
 		health--;
 		healthText.text = "Lives: " + health;
 		ufo.kill();
-    console.log(healthText);
-    console.log("health = " +health);
   },
 
   destroyUfo: function(bullet, ufo) {
@@ -214,7 +212,6 @@ BasicGame.Game.prototype = {
 		bullet.kill();
 		score += 100;
 		scoreText.text = "Score: " + score;
-    console.log("destroyUfo");
 	},
 
 	collectLife: function(ship, life) {
@@ -223,7 +220,6 @@ BasicGame.Game.prototype = {
 		life.kill();
 		health++;
 		healthText.text = "Lives: " + health;
-    console.log("collectLife");
 	},
 
 	updateTimer: function(){
