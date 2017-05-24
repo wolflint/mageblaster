@@ -129,8 +129,8 @@ BasicGame.Game.prototype = {
     cursors = this.input.keyboard.createCursorKeys();
 
     //Debug toggle
-    debugToggle = this.input.keyboard.addKey(Phaser.Keyboard.F3);
-    this.debugToggle.onDown.add(toggle, this);
+    /*debugToggle = this.input.keyboard.addKey(Phaser.Keyboard.F3);
+    this.debugToggle.onDown.add(toggle, this);*/
 
     //Load audio into memory, start music
     bulletAudio = this.add.audio('bullet');
