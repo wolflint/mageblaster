@@ -103,7 +103,7 @@ BasicGame.Game.prototype = {
 			fill: '#fff'
 		});
 		timer = this.time.create(false);
-		seconds = 0;
+		seconds = 60;
 		timerText.text = "Time: " + seconds;
 
     //GAME OVER
@@ -148,7 +148,7 @@ BasicGame.Game.prototype = {
     this.starfield.tilePosition.y += 2;
 
     //execute trueGameOver function when one of the requirements is met
-    if (health < 1 || seconds == 60 || gameOver === true) {
+    if (health < 1 || seconds == 0 || gameOver === true) {
       this.trueGameOver();
     }
     //else execute 'createUfo','createLife','moveShip','collisionDetection' function
@@ -282,7 +282,7 @@ BasicGame.Game.prototype = {
 
 	updateTimer: function(){
 		//Updates timer and outputs to the screen
-		seconds++;
+		seconds--;
 		timerText.text = "Time: " + seconds;
 	},
 
