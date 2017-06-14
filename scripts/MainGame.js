@@ -41,7 +41,7 @@ BasicGame.Game.prototype = {
     //Specify the physics of the Game to arcade
     this.physics.startSystem(Phaser.Physics.ARCADE);
     //Add the star field and logo on screen
-    this.starfield = this.add.tileSprite(0, 0, 800, 600, 'starfield');
+    this.grass = this.add.tileSprite(0, 0, 800, 600, 'grass');
     //Add the ship onto the screen, set physics and the boundaries
     ship = this.add.sprite((this.world.width / 2), this.world.height - 50, 'ship');
     ship.anchor.setTo(0.5, 0);
@@ -156,7 +156,7 @@ BasicGame.Game.prototype = {
 
   update: function() {
     //Scroll background
-    this.starfield.tilePosition.y += 2;
+    this.grass.tilePosition.y += 2;
 
     //execute trueGameOver function when one of the requirements is met
     if (health < 1 || seconds == 0 || gameOver === true) {
