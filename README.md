@@ -1,6 +1,8 @@
-# rocketblaster
-Rocket Blaster is a Phaser game engine step-by-step development.
+# MAGE BLASTER
+Mage Blaster is a fork of Rocket Blaster, a "Space Invaders" style game developed in the Phaser.io engine.
 
-The live game can be [played here](https://wolflint.github.io/rocketblaster/)
+Mage Blaster is written in HTML and JavaScript.
 
-View the [user manual](edit link later)
+You can play/test the game [HERE!](https://wolflint.github.io/mageblaster/)
+
+View the [user manual.](http://phaser.io/)
