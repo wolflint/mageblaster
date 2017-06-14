@@ -315,7 +315,7 @@ BasicGame.Game.prototype = {
 		extratime.kill();
 		seconds = seconds + 10;
 		timerText.text = "Time: " + seconds;
-    var animation = this.add.sprite(life.body.x, life.body.y, 'timeAnimation');
+    var animation = this.add.sprite(extratime.body.x, extratime.body.y, 'timeAnimation');
     animation.animations.add('timeAnimation');
     animation.animations.play('timeAnimation', 30, false, true);
 	},
