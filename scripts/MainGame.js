@@ -226,7 +226,7 @@ BasicGame.Game.prototype = {
     //Function which spawns life, for the player to collected
 
     //Generate random number between 0 and 500
-    var random = this.rnd.integerInRange(0, 500);
+    var random = this.rnd.integerInRange(0, 750);
     //If random = 0 spawn a life at a random X position
     if (random === 0) {
       var randomX = this.rnd.integerInRange(0, this.world.width - 150);
@@ -242,9 +242,9 @@ BasicGame.Game.prototype = {
     //Function which spawns timeup, for the player to collected
 
     //Generate random number between 0 and 500
-    var random = this.rnd.integerInRange(0, 400);
+    var random = this.rnd.integerInRange(0, 600);
     //If random = 0 spawn a timeup at a random X position
-    if (random === 0) {
+    if (random === 300) {
       var randomX = this.rnd.integerInRange(0, this.world.width - 150);
 
       //Create extratime from timeup group and set the velocity
