@@ -4,6 +4,7 @@ BasicGame.Game = function(game) {};
 var ship;
 var ufos; //Group of enemies drop from top of screen
 var lives; //Group of lives which can be collected
+var timeup; //Group of clocks which can be collected to add 10s to timer
 
 var bullets; //projectiles shot by the ship
 var fireRate = 100; //Rate at which the bullets are fires
@@ -68,6 +69,16 @@ BasicGame.Game.prototype = {
     lives.setAll('checkWorldBounds', true);
     lives.setAll('anchor.x', 0.5);
     lives.setAll('anchor.y', 0.5);
+
+    //TIMEUP
+    //Create the group of timeup, set their physics and boundaries
+    timeup = this.add.group();
+    this.physics.enable(timeup, Phaser.Physics.ARCADE);
+
+    timeup.setAll('outOfBoundsKill', true);
+    timeup.setAll('checkWorldBounds', true);
+    timeup.setAll('anchor.x', 0.5);
+    timeup.setAll('anchor.y', 0.5);
 
     //BULLETS
     //Create the bullets group, set their physics, multiples and boundaries
@@ -155,6 +166,7 @@ BasicGame.Game.prototype = {
     else {
     this.createUfo();
     this.createLife();
+    this.createTimeUp();
     this.moveShip();
     this.collisionDetection();
   }
@@ -226,6 +238,22 @@ BasicGame.Game.prototype = {
     }
   },
 
+  createTimeUp: function() {
+    //Function which spawns timeup, for the player to collected
+
+    //Generate random number between 0 and 500
+    var random = this.rnd.integerInRange(0, 400);
+    //If random = 0 spawn a timeup at a random X position
+    if (random === 0) {
+      var randomX = this.rnd.integerInRange(0, this.world.width - 150);
+
+      //Create extratime from timeup group and set the velocity
+      var extratime = timeup.create(randomX, -50, 'timeup');
+      this.physics.enable(extratime, Phaser.Physics.ARCADE);
+      extratime.body.velocity.y = 100;
+    }
+  },
+
   fireBullet: function() {
     //Generates the bullet and it's position, then sets the velocity and plays the audio
     if (this.time.now > nextFire && bullets.countDead() > 0) {
@@ -241,6 +269,7 @@ BasicGame.Game.prototype = {
     //Function executed during gameplay, checks for collisions
     this.physics.arcade.overlap(ship, ufos, this.collideUfo, null, this);
     this.physics.arcade.overlap(ship, lives, this.collectLife, null, this);
+    this.physics.arcade.overlap(ship, timeup, this.collectTimeUp, null, this);
     this.physics.arcade.overlap(bullets, ufos, this.destroyUfo, null, this);
   },
 
@@ -278,6 +307,17 @@ BasicGame.Game.prototype = {
     var animation = this.add.sprite(life.body.x, life.body.y, 'lifeAnimation');
     animation.animations.add('lifeAnimation');
     animation.animations.play('lifeAnimation', 30, false, true);
+	},
+
+  collectTimeUp: function(ship, extratime) {
+		//Executed when there is a collision between the player and life
+		//Life is destroyed, animation and sound played, increased health
+		extratime.kill();
+		seconds = seconds + 10;
+		timerText.text = "Time: " + seconds;
+    var animation = this.add.sprite(life.body.x, life.body.y, 'timeAnimation');
+    animation.animations.add('timeAnimation');
+    animation.animations.play('timeAnimation', 30, false, true);
 	},
 
 	updateTimer: function(){
