@@ -234,7 +234,7 @@ BasicGame.Game.prototype = {
       //Create life from lives group and set the velocity
       var life = lives.create(randomX, -50, 'life');
       this.physics.enable(life, Phaser.Physics.ARCADE);
-      life.body.velocity.y = 150;
+      life.body.velocity.y = 200;
     }
   },
 
@@ -250,7 +250,7 @@ BasicGame.Game.prototype = {
       //Create extratime from timeup group and set the velocity
       var extratime = timeup.create(randomX, -50, 'timeup');
       this.physics.enable(extratime, Phaser.Physics.ARCADE);
-      extratime.body.velocity.y = 100;
+      extratime.body.velocity.y = 300;
     }
   },
 
