@@ -216,7 +216,7 @@ BasicGame.Game.prototype = {
 
       //Create UFO from the UFOs group and set the physics
       var ufo = ufos.create(randomX, -50, 'ufo');
-      ufo = this.add.sprite(extratime.body.x, extratime.body.y, 'ufoAnimation');
+      animation = this.add.sprite(ufo.body.x, ufo.body.y, 'ufoAnimation');
       animation.animations.add('ufoAnimation');
       animation.animations.play('ufoAnimation', 15, true);
       this.physics.enable(ufo, Phaser.Physics.ARCADE);
