@@ -215,13 +215,14 @@ BasicGame.Game.prototype = {
       var randomX = this.rnd.integerInRange(0, this.world.width - 150);
 
       //Create UFO from the UFOs group and set the physics
-      var ufo = ufos.create(randomX, -50, 'ufo');
-      animation = this.add.sprite(ufo.body.x, ufo.body.y, 'ufoAnimation');
-      animation.animations.add('ufoAnimation');
-      animation.animations.play('ufoAnimation', 15, true);
+      var ufo = ufos.create(randomX, -50, 'ufoAnimation');
       this.physics.enable(ufo, Phaser.Physics.ARCADE);
       //Generate random velocity
       ufo.body.velocity.y = this.rnd.integerInRange(100, 600);
+    /*  //Animate UFOs
+      animation = this.add.sprite(ufo.body.x, ufo.body.y, 'ufoAnimation');
+      animation.animations.add('ufoAnimation');
+      animation.animations.play('ufoAnimation', 15, true);*/
     }
   },
 
