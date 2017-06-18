@@ -146,8 +146,9 @@ BasicGame.Game.prototype = {
     //Load audio into memory, start music
     bulletAudio = this.add.audio('bullet');
     explosionAudio = this.add.audio('explosion');
+    explosionAudio.volume = 0.5;
     music = this.add.audio('music', 1, true);
-    music.play('', 0, 1, true);
+    music.play('', 0, 0.5, true);
 
 		//Set TimerEvent to occur every second
 		timer.loop(1000, this.updateTimer, this);
@@ -215,7 +216,9 @@ BasicGame.Game.prototype = {
       var randomX = this.rnd.integerInRange(0, this.world.width - 150);
 
       //Create UFO from the UFOs group and set the physics
-      var ufo = ufos.create(randomX, -50, 'ufoAnimation');
+      //var ufo = ufos.create(randomX, -50, 'ufoAnimation');
+      var ufo = this.game.add.sprite(randomX, -50, 'ufoAnimation');
+      ufo.frame = 0;
       this.physics.enable(ufo, Phaser.Physics.ARCADE);
       //Generate random velocity
       ufo.body.velocity.y = this.rnd.integerInRange(100, 600);
@@ -265,7 +268,7 @@ BasicGame.Game.prototype = {
       var bullet = bullets.getFirstExists(false);
       bullet.reset(ship.x, ship.y);
       bullet.body.velocity.y = -400;
-      bulletAudio.play();
+      bulletAudio.play('',0,0.05 );
     }
   },
 
