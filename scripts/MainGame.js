@@ -39,6 +39,10 @@ BasicGame.Game.prototype = {
     ship.anchor.setTo(0.5, 0);
     this.physics.enable(ship, Phaser.Physics.ARCADE);
     ship.body.collideWorldBounds = true;
+    //SHIP animations
+    ship.animations.add('shipLeft', [4,5], 5, true);
+    ship.animations.add('shipRight', [6,7], 5, true);
+    ship.animations.add('shipBack', [0,1], 5, true);
     //Creating Groups
     //UFOs
     //Create the UFO groups, set theirs physics and boundaries
@@ -153,22 +157,16 @@ BasicGame.Game.prototype = {
     if (cursors.left.isDown) {
       ship.body.velocity.x = //When Right Arrow pressed, moves ship Right
       - 200;
+      ship.animations.play('shipLeft');
     } else if (cursors.right.isDown) {
       ship.body.velocity.x = //No button pressed, stops horizontal movement
       200;
+      ship.animations.play('shipRight');
     } else {
       ship.body.velocity.x = 0;
-    }    //When Left Arrow pressed, moves ship Left
-
-    if (cursors.left.isDown) {
-      ship.body.velocity.x = //When Right Arrow pressed, moves ship Right
-      - 200;
-    } else if (cursors.right.isDown) {
-      ship.body.velocity.x = //No button pressed, stops horizontal movement
-      200;
-    } else {
-      ship.body.velocity.x = 0;
-    }    //SHOOTING
+      ship.animations.play('shipBack');
+    }
+    //SHOOTING
     //If SpaceBar is pressed, execute the 'fireBullet' function
 
     if (this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
