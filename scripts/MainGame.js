@@ -215,8 +215,10 @@ BasicGame.Game.prototype = {
       var randomX = this.rnd.integerInRange(0, this.world.width - 150);
 
       //Create UFO from the UFOs group and set the physics
-      var ufo = ufos.create(randomX, -50, 'ufoAnimation');
+      var ufo = ufos.create(randomX, -50, 'ufo');
       this.physics.enable(ufo, Phaser.Physics.ARCADE);
+      ufo.animations.add('ufoAnimation', [0,1], 20, true);
+      ufo.play('ufoAnimation');
       //Generate random velocity
       ufo.body.velocity.y = this.rnd.integerInRange(100, 600);
     /*  //Animate UFOs
