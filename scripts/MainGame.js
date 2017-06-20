@@ -26,8 +26,8 @@ var health;
 var score;
 var scoreText;
 var healthText;
-var showDebug = false;
-var debugToggle;
+//var showDebug = false;
+//var debugToggle;
 BasicGame.Game.prototype = {
   create: function () {
     //Specify the physics of the Game to arcade
