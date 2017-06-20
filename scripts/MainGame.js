@@ -43,7 +43,7 @@ BasicGame.Game.prototype = {
     ship.animations.add('shipLeft', [4,5], 5, true);
     ship.animations.add('shipRight', [6,7], 5, true);
     ship.animations.add('shipBack', [0,1], 5, true);
-    ship.animations.add('shipFront', [2,3], 5, true);
+    ship.animations.add('shipFront', [2,3], 2, true);
     //Creating Groups
     //UFOs
     //Create the UFO groups, set theirs physics and boundaries
@@ -185,7 +185,7 @@ BasicGame.Game.prototype = {
       //Create UFO from the UFOs group and set the physics
       var ufo = ufos.create(randomX, - 50, 'ufoAnimation');
       this.physics.enable(ufo, Phaser.Physics.ARCADE);
-      ufo.animations.add('ufoAnimation', [0, 1, 2, 3], 5, true);
+      ufo.animations.add('ufoAnimation', [0, 1], 5, true);
       ufo.play('ufoAnimation');
       //ufo.body.moves = true;
       //Generate random velocity
