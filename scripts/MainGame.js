@@ -437,7 +437,7 @@ BasicGame.Game.prototype = {
 
       this.physics.enable(ufo, Phaser.Physics.ARCADE);
 
-      ufo.animations.add('ufoAnimation', [ 0, 1, 0, 1 ], 20, true);
+      ufo.animations.add('ufoAnimation', [ 0, 1, ], 5, true);
 
       ufo.play('ufoAnimation');
       ufo.body.moves = true;
