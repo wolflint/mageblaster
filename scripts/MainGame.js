@@ -43,6 +43,7 @@ BasicGame.Game.prototype = {
     ship.animations.add('shipLeft', [4,5], 5, true);
     ship.animations.add('shipRight', [6,7], 5, true);
     ship.animations.add('shipBack', [0,1], 5, true);
+    ship.animations.add('shipFront', [2,3], 5, true);
     //Creating Groups
     //UFOs
     //Create the UFO groups, set theirs physics and boundaries
@@ -293,6 +294,7 @@ BasicGame.Game.prototype = {
     //Executed when game ends, kills all objects, stops timer and displays game over screen
     ship.body.velocity.x = 0;
     ship.body.x = (this.world.width / 2) - (ship.body.width / 2);
+    ship.animations.play('shipFront');
     ufos.callAll('kill');
     lives.callAll('kill');
     bullets.callAll('kill');
