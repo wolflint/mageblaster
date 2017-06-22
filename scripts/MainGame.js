@@ -143,16 +143,16 @@ BasicGame.Game.prototype = {
     //execute trueGameOver function when one of the requirements is met
     if (health < 1 || seconds == 0 || gameOver === true) {
       this.trueGameOver();
-    }    //else execute 'createUfo','createLife','movemage','collisionDetection' function
+    }    //else execute 'createSkelly','createLife','moveMage','collisionDetection' function
      else {
-      this.createUfo();
+      this.createSkelly();
       this.createLife();
       this.createTimeUp();
-      this.movemage();
+      this.moveMage();
       this.collisionDetection();
     }
   },
-  movemage: function () {
+  moveMage: function () {
     //Moves mage and fires the bullets using keyboard controls
     //When Left Arrow pressed, moves mage Left
     if (cursors.left.isDown) {
@@ -174,7 +174,7 @@ BasicGame.Game.prototype = {
       this.fireBullet();
     }
   },
-  createUfo: function () {
+  createSkelly: function () {
     //When executed, creates new skelly enemies
     //Randomly generates a number between 0 and 20
     var random = this.rnd.integerInRange(0, 20);
@@ -237,12 +237,12 @@ BasicGame.Game.prototype = {
   },
   collisionDetection: function () {
     //Function executed during gameplay, checks for collisions
-    this.physics.arcade.overlap(mage, skellys, this.collideUfo, null, this);
+    this.physics.arcade.overlap(mage, skellys, this.collideSkelly, null, this);
     this.physics.arcade.overlap(mage, lives, this.collectLife, null, this);
     this.physics.arcade.overlap(mage, timeup, this.collectTimeUp, null, this);
-    this.physics.arcade.overlap(bullets, skellys, this.destroyUfo, null, this);
+    this.physics.arcade.overlap(bullets, skellys, this.destroySkelly, null, this);
   },
-  collideUfo: function (mage, skelly) {
+  collideSkelly: function (mage, skelly) {
     //Executed if there is a collision between the mage and skellys
     //skelly is destroyes, player looses 1 life and animations are played
     explosionAudio.play();
@@ -253,7 +253,7 @@ BasicGame.Game.prototype = {
     health--;
     healthText.text = 'Lives: ' + health;
   },
-  destroyUfo: function (bullet, skelly) {
+  destroySkelly: function (bullet, skelly) {
     //Executed if there is a colllision between a skelly and a bullet
     //skelly is destroyed, plays sound and animation, increases score
     explosionAudio.play();
