@@ -25,11 +25,11 @@ BasicGame.Preloader.prototype = {
 		this.load.image('bullet', 'assets/bullet.png');
 		this.load.image('timeup', 'assets/time.png');
 
-		this.load.spritesheet('ship', 'assets/ship.png', 64, 64, 8);
+		this.load.spritesheet('mage', 'assets/mage.png', 64, 64, 8);
 		this.load.spritesheet('kaboom', 'assets/explode.png', 128, 128, 16);
 		this.load.spritesheet('lifeAnimation', 'assets/lifeAnimation.png', 100, 100, 4);
 		this.load.spritesheet('timeAnimation', 'assets/timeAnimation.png', 100, 100, 4);
-		this.load.spritesheet('ufoAnimation', 'assets/ufoAnimation.png', 64, 64, 4);
+		this.load.spritesheet('skellySprite', 'assets/skelly.png', 64, 64, 4);
 
 		this.load.audio('music', ['assets/music.m4a', 'assets/music.mp3']);
 		this.load.audio('bullet', ['assets/laser_human.mp3']);
