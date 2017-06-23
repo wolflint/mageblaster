@@ -3,6 +3,6 @@ Mage Blaster is a fork of Rocket Blaster, a "Space Invaders" style game develope
 
 Mage Blaster is written in HTML and JavaScript.
 
-You can play/test the game [HERE!](https://wolflint.github.io/mageblaster/)
+You can play the game [HERE!](https://wolflint.github.io/mageblaster/)
 
-View the [user manual.](http://phaser.io/)
+View the [user manual.](https://github.com/wolflint/mageblaster/blob/master/manual.pdf)
